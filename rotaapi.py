@@ -8,7 +8,7 @@ app.config["DEBUG"] = True
 alunos = [
     {
     'id':123,
-    'nome':'Leo',
+    'nome':'Leo', 
     'email':'leo.com',
     'escolaridade':'superior completo',
     'idade':23},
@@ -70,7 +70,7 @@ exercicios = [
     'PossiveisErros':'Multiplicação'},
     {
     'id':12,
-    'ProgressoAtual':30,
+    'ProgressoAtual':30, #comentario
     'ProgressoMaximo':47,
     'Exercicio':'Tabuada numeral 9',
     'PossiveisErros':'Multiplicação'},
