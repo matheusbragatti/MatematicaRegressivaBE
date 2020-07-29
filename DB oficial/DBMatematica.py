@@ -4,3 +4,5 @@ import sqlite3
 
 #Variável que reecebe a conexão ao customer.db, caso ele não exista o python vai criar
 conn = sqlite3.connect('matematicaregressiva.db')
+
+print('Executado com sucesso')
