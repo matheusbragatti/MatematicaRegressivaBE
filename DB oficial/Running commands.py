@@ -4,7 +4,7 @@ import Commands
 #Commands.drop_table()
 
 #Create Table
-#Commands.create_table()
+Commands.create_table()
 
 #Show All
-Commands.show_all()
+#Commands.show_all()

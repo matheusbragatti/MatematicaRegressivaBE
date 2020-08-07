@@ -30,6 +30,16 @@ def create_table():
     #    progresso_maximo INTEGER
     #)""")
 
+    #Tabela com relacionamentos entra a tabela aulas, foreign key nome, progresso_atual e progresso_maximo
+    c.execute("""CREATE TABLE materia (
+        materia_id INTEGER NOT NULL PRIMARY KEY,
+        aula INTEGER,
+        nome TEXT, 
+        progresso_atual INTEGER,
+        progresso_maximo INTEGER,
+        FOREIGN KEY (aula) REFERENCES aulas (aula_id)
+        )""")
+
     print ("Comando executado com sucesso")
 
     #Commit database
