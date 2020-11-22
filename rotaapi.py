@@ -1,8 +1,11 @@
 import flask
-from flask import request
+from flask import request, jsonify
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True
+
+
+
 
 
 alunos = [
@@ -48,17 +51,75 @@ perfis = [
     'Password':12321},
 ]
 
+materiaCard = [
+    {
+        'id':10,
+        'name':'materia1',
+        'description':'primeira materia do site matematica regressiva',
+        'currentProgress':0,
+        'maxProgress':74
+    },
+    {
+        'id':456,
+        'name':'materia2',
+        'description':'segunda materia do site para test',
+        'currentProgress':6,
+        'maxProgress':11
+    },
+    {
+        'id':77,
+        'name':'materia3',
+        'description':'terceira materia do curso',
+        'currentProgress':2,
+        'maxProgress':9
+    }
+]
+
+aulaCard = [
+    {
+        'id':10,
+        'name':'Aula1',
+        'description':'Comecando a aprender',
+        'currentProgress':0,
+        'maxProgress':74
+    },
+    {
+        'id':456,
+        'name':'Aula2',
+        'description':'segunda aula test',
+        'currentProgress':6,
+        'maxProgress':11
+    },
+    {
+        'id':77,
+        'name':'Aula3',
+        'description':'terceira do curso',
+        'currentProgress':2,
+        'maxProgress':9
+    },
+        {
+        'id':77,
+        'name':'Aula4',
+        'description':'quarta e ultima aula',
+        'currentProgress':6,
+        'maxProgress':33
+    }
+]
+
 materias = [
     {
-    'id':10,
-    'ProgressoAtual':100,
-    'ProgressoMax':100,
-    'Conteudo':'Matematica aplicada'},
+        'nome':'nome1',
+        'id':10,
+        'ProgressoAtual':100,
+        'ProgressoMax':100,
+        'Conteudo':'Matematica aplicada'},
     {
-    'id':11,
-    'ProgressoAtual':110,
-    'ProgressoMax':100,
-    'Conteudo':'Matematica basica 2'},
+        'nome':'nome2',
+        'id':11,
+        'ProgressoAtual':110,
+        'ProgressoMax':100,
+        'Conteudo':'Matematica basica 2'
+    },
 ]
 
 exercicios = [
@@ -147,6 +208,25 @@ def perfilposition():
  
    return perfis[position]
 
+@app.route('/materias', methods=['GET'])
+def getMaterias():
+    apiRequest = request.args['id']
+
+    response = pegarMaterias(apiRequest)
+
+    return response
+
+
+@app.route('/materia', methods=['POST'])
+def createMaterias():
+    apiRequest = request.args['']
+
+    response = criarMateriaNova(apiRequest)
+
+
+    return "Materia criada com sucesso"
+
+
 @app.route('/materia', methods=['GET'])
 def materia():
     id = int(request.args['id'])
@@ -197,5 +277,40 @@ def erroposition():
 
  
    return erros[position]
+
+
+@app.route('/materiaCard', methods=['GET'])
+def getAllMateria():
+    
+
+    return jsonify(materiaCard)
+
+
+@app.route('/materiaCard', methods=['POST'])
+def postMateria():
+    requestData = request.json
+    print(requestData)
+    print('entrou no POSTmateriaCard')
+    materiaCard.append(requestData)
+
+    return jsonify(materiaCard)
+
+
+@app.route('/aulaCard', methods=['GET'])
+def getAllAula():
+    
+
+    return jsonify(aulaCard)
+
+
+@app.route('/aulaCard', methods=['POST'])
+def postAula():
+    requestData = request.json
+    print(requestData)
+    print('entrou no POSTaulaCard')
+    aulaCard.append(requestData)
+
+    return jsonify(aulaCard)
+
 
 app.run()
